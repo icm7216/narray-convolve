@@ -5,13 +5,16 @@ require "numo/narray"
 
 module Narray
   module Convolve
-  
+    
     def convolve(n, m, mode = :full)
       zero_size = m.size - 1
-      zero_pad = Numo::DFloat.zeros(zero_size)
-      out = Numo::DFloat.zeros(n.size + m.size - 1)
-      work = Numo::NArray.concatenate([zero_pad,n,zero_pad],axis:0)      
-      work_size = work.size
+      out_size = zero_size + n.size
+      n_end = out_size - 1
+      work_size = out_size + zero_size
+
+      out = Numo::DFloat.zeros(out_size)
+      work = Numo::DFloat.zeros(work_size)
+      work[zero_size..n_end].store(n[true])
 
       work_size.times do |i|
         w = i + zero_size
@@ -20,7 +23,7 @@ module Narray
           out[i] = mul.sum
         end
       end
-    
+
       case mode
       when :full # full: (N+M-1)
         ans = out[true]
