@@ -1,8 +1,6 @@
 # Narray::Convolve
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/narray/convolve`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Narray::Convolve is returns the discrete, linear convolution of two one-dimensional sequences.
 
 ## Installation
 
@@ -22,17 +20,34 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Narray::Convolve is similar to numpy.convolve, but with a different order of second arguments.
+```
+irb(main):001:0> require "narray/convolve"
+=> true
+irb(main):002:0> n = Numo::DFloat[1,2,3]
+=>
+Numo::DFloat#shape=[3]
+...
+irb(main):003:0> m = Numo::DFloat[0,1,0.5].reverse
+=>
+Numo::DFloat(view)#shape=[3]
+...
+irb(main):004:0> Narray::Convolve.convolve(n, m, :same)
+=>
+Numo::DFloat(view)#shape=[3]
+[1, 2.5, 4]
+```
 
-## Development
+In case of Python
+```
+>>> import numpy as np
+>>> np.convolve([1,2,3],[0,1,0.5], 'same')
+array([1. , 2.5, 4. ])
+>>>
+```
+see: [numpy.convolve — NumPy v1.20 Manual](https://numpy.org/doc/stable/reference/generated/numpy.convolve.html#numpy-convolve)
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test-unit` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/narray-convolve.
 
 ## License
 
