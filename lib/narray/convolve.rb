@@ -10,13 +10,19 @@ module Narray
     # Narray::Convolve is similar to numpy.convolve, 
     # but with a different order of second arguments.
     #
-    #  
+    # @example
+
     # Narray::Convolve
     # ```
     # require "narray/convolve"
     # n = Numo::DFloat[1,2,3]
     # m = Numo::DFloat[0,1,0.5].reverse
     # Narray::Convolve.convolve(n, m, :same)
+    # => [1, 2.5, 4]
+    # 
+    # or 
+    # 
+    # Narray::Convolve.convolve([1,2,3], [0,1,0.5].reverse, :same)
     # => [1, 2.5, 4]
     # ```
     # 
@@ -28,12 +34,12 @@ module Narray
     # 
     # ======================================
     # 
-    # param: 
+    # @param: 
     #       n: (Numo::NArray, DFloat)
     #       m: (Numo::NArray, DFloat)
     #       mode: (Symbol) {:full, :same, :valid} 
     #
-    # Returns: (Numo::NArray, DFloat)
+    # @Return: (Numo::NArray, DFloat)
     #      convolution of n and m.
     #
     def convolve(n, m, mode = :full)
