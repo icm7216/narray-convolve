@@ -37,8 +37,28 @@ module Narray
     #      convolution of n and m.
     #
     def convolve(n, m, mode = :full)
-      zero_size = m.size - 1
-      out_size = zero_size + n.size
+      case n
+      when Array
+        n = Numo::DFloat.cast(n)
+      when Numo::DFloat
+        # ok
+      else
+        raise ArgumentError, "not Numo::DFloat: #{n.inspect[0..48]}"
+      end
+
+      case m
+      when Array
+        m = Numo::DFloat.cast(m)
+      when Numo::DFloat
+        # ok
+      else
+        raise ArgumentError, "not Numo::DFloat: #{n.inspect[0..48]}"
+      end
+
+      n_size = n.size
+      m_size = m.size
+      zero_size = m_size - 1
+      out_size = zero_size + n_size
       n_end = out_size - 1
       work_size = out_size + zero_size
 
@@ -59,13 +79,13 @@ module Narray
         ans = out[true]
       when :same
         # same: [M,N].max
-        s = (m.size / 2.0).round - 1
-        e = s + n.size
+        s = (m_size / 2.0).round - 1
+        e = s + n_size
         ans = out[s...e]
       when :valid
         # valid: [M,N].max - [M,N].min + 1
         s = zero_size
-        e = m.size
+        e = m_size
         ans = out[s..-e]
       end
       ans
