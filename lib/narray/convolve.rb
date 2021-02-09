@@ -5,42 +5,35 @@ require "numo/narray"
 
 module Narray
   module Convolve
-    # ======================================
     # 
     # Narray::Convolve is similar to numpy.convolve, 
     # but with a different order of second arguments.
     #
     # @example
-
-    # Narray::Convolve
-    # ```
-    # require "narray/convolve"
-    # n = Numo::DFloat[1,2,3]
-    # m = Numo::DFloat[0,1,0.5].reverse
-    # Narray::Convolve.convolve(n, m, :same)
-    # => [1, 2.5, 4]
-    # 
-    # or 
-    # 
-    # Narray::Convolve.convolve([1,2,3], [0,1,0.5].reverse, :same)
-    # => [1, 2.5, 4]
-    # ```
-    # 
-    # numpy.convolve
-    # ```
-    # >>> numpy.convolve([1,2,3],[0,1,0.5], 'same')
-    # array([1. , 2.5, 4. ])
-    # ```
-    # 
-    # ======================================
-    # 
-    # @param: 
-    #       n: (Numo::NArray, DFloat)
-    #       m: (Numo::NArray, DFloat)
-    #       mode: (Symbol) {:full, :same, :valid} 
+    #   Narray::Convolve
     #
-    # @Return: (Numo::NArray, DFloat)
-    #      convolution of n and m.
+    #   require "narray/convolve"
+    #   n = Numo::DFloat[1,2,3]
+    #   m = Numo::DFloat[0,1,0.5].reverse
+    #   Narray::Convolve.convolve(n, m, :same)
+    #   # => [1, 2.5, 4]
+    # 
+    #   or 
+    # 
+    #   Narray::Convolve.convolve([1,2,3], [0,1,0.5].reverse, :same)
+    #   # => [1, 2.5, 4]
+    #
+    #   In case of numpy.convolve
+    #   >>> numpy.convolve([1,2,3],[0,1,0.5], 'same')
+    #   array([1. , 2.5, 4. ])
+    #
+    # 
+    # 
+    # @param n [Numo::DFloat or Array]
+    # @param m [Numo::DFloat or Array]
+    # @param mode [Symbol] (:full, :same, :valid)
+    #
+    # @return [Numo::DFloat] convolution of n and m.
     #
     def convolve(n, m, mode = :full)
       case n
