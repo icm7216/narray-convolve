@@ -5,7 +5,7 @@ require "numo/narray"
 
 module Narray
   module Convolve
-    
+
     def convolve(n, m, mode = :full)
       zero_size = m.size - 1
       out_size = zero_size + n.size
@@ -19,8 +19,7 @@ module Narray
       work_size.times do |i|
         w = i + zero_size
         if w < work_size
-          mul = work[i..w] * m
-          out[i] = mul.sum
+          out[i] = work[i..w].mulsum(m)
         end
       end
 
