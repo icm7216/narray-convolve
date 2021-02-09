@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["icm7216d@gmail.com"]
 
   spec.summary       = "convolve for numo-narray"
-  spec.description   = "This is a convolve method for numo-murray. Similar to numpy convolve method."
+  spec.description   = "This is a convolve method for numo-narray. Similar to numpy convolve method."
   spec.homepage      = "https://github.com/icm7216/narray-convolve"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.4.0")
