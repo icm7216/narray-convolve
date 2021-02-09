@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/narray-convolve.svg)](https://badge.fury.io/rb/narray-convolve)
+
 # Narray::Convolve
 
 Narray::Convolve is returns the discrete, linear convolution of two one-dimensional sequences.
